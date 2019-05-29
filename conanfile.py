@@ -42,9 +42,12 @@ class MpfrConan(ConanFile):
                 args.extend(["--disable-static", "--enable-shared"])
             else:
                 args.extend(["--disable-shared", "--disable-static"])
+            if self.settings.compiler == "clang":
+                # warning: optimization flag '-ffloat-store' is not supported
+                args.append("mpfr_cv_gcc_floatconv_bug=no")
             env_build = AutoToolsBuildEnvironment(self)
             env_build.configure(args=args)
-            env_build.make()
+            env_build.make(args=["V=0"])
             env_build.install()
 
     def package(self):
