@@ -45,6 +45,9 @@ class MpfrConan(ConanFile):
             if self.settings.compiler == "clang":
                 # warning: optimization flag '-ffloat-store' is not supported
                 args.append("mpfr_cv_gcc_floatconv_bug=no")
+            if self.settings.compiler == "clang" and self.settings.arch == "x86":
+                # fatal error: error in backend: Unsupported library call operation!
+                args.append("--disable-float128")
             env_build = AutoToolsBuildEnvironment(self)
             env_build.configure(args=args)
             env_build.make(args=["V=0"])
