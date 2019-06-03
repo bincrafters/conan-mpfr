@@ -55,6 +55,9 @@ class MpfrConan(ConanFile):
 
     def package(self):
         self.copy(pattern="LICENSE", dst="licenses", src=self._source_subfolder)
+        la = os.path.join(self.package_folder, "lib", "libmpfr.la")
+        if os.path.isfile(la):
+            os.unlink(la)
 
     def package_info(self):
         self.cpp_info.libs = ["mpfr"]
