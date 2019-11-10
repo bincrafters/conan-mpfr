@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from conans import ConanFile, AutoToolsBuildEnvironment, tools
 import os
 
@@ -12,7 +10,6 @@ class MpfrConan(ConanFile):
     topics = ("conan", "mpfr", "multiprecision", "math", "mathematics")
     url = "https://github.com/bincrafters/conan-mpfr"
     homepage = "https://www.mpfr.org/"
-    author = "Bincrafters <bincrafters@gmail.com>"
     license = "LGPL-3.0-or-later"
     exports = ["LICENSE.md"]
     settings = "os", "arch", "compiler", "build_type"
@@ -28,6 +25,7 @@ class MpfrConan(ConanFile):
 
     def configure(self):
         del self.settings.compiler.libcxx
+        del self.settings.compiler.cppstd
 
     def source(self):
         source_url = "https://ftp.gnu.org/gnu/mpfr/mpfr-%s.tar.bz2" % self.version
