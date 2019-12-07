@@ -17,7 +17,7 @@ class MpfrConan(ConanFile):
     default_options = {"shared": False, "fPIC": True}
     _source_subfolder = "source_subfolder"
     _build_subfolder = "build_subfolder"
-    requires = "gmp/6.1.2@bincrafters/stable"
+    requires = "gmp/6.1.2"
 
     def config_options(self):
         if self.settings.os == 'Windows':
